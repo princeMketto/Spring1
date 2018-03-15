@@ -4,19 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class SaleRepository {
+    Set<Sale> list = new HashSet<>();
 
-    Sale sale;
-
-
-    List<Sale> list ;
-
-    public SaleRepository(Sale sale,List<Sale> list) {
-        this.sale = sale;
-        this.list = list;
+    public SaleRepository() {
     }
 
     public void add(Sale sale) {
@@ -24,11 +18,7 @@ public class SaleRepository {
     }
 
     public List<Sale> findAll() {
-
-        return list;
+        return list.stream().collect(Collectors.toList());
     }
-    public void setAll(ArrayList<Sale> list){
-        this.list = list;
 
-    }
 }

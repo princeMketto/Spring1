@@ -10,13 +10,8 @@ import java.util.List;
 
 public class SaleService {
 
-    ArrayList<Sale> list;
-
     @Autowired
      SaleRepository repository;
-
-    @Autowired
-    Sale sale;
 
     public void save(Sale sale) {
       //  System.out.println("Please save this:"+productname);
@@ -28,7 +23,6 @@ public class SaleService {
     public List<Sale> getAll() {
         List<Sale> list = repository.findAll();
         return  list;
-
     }
 
 }

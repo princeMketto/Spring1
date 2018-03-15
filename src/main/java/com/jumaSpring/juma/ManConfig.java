@@ -5,24 +5,28 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
+import java.util.Scanner;
 
 @Configuration
 public class ManConfig {
+
     @Bean
-    SaleService saleService(){
+    SaleService saleService() {
         return new SaleService();
-    }
-    @Bean
-    MainScreen mainScreen(SaleService saleService,Sale sale){
-        return new MainScreen(saleService,sale);
-    }
-    @Bean
-    SaleRepository saleRepository(Sale sale,List<Sale> list){
-        return new SaleRepository(sale,list);
     }
 
     @Bean
-    Sale sale(){
-        return new Sale();
+    Scanner createScanner() {
+        return new Scanner(System.in);
+    }
+
+    @Bean
+    MainScreen mainScreen(SaleService saleService,Scanner scanner) {
+        return new MainScreen(saleService,scanner);
+    }
+
+    @Bean
+    SaleRepository saleRepository() {
+        return new SaleRepository();
     }
 }
