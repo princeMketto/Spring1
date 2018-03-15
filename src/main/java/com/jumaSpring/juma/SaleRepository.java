@@ -8,28 +8,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SaleRepository {
-    @Autowired
+
     Sale sale;
 
 
-    List<Sale> list;
+    List<Sale> list ;
 
     public SaleRepository(Sale sale,List<Sale> list) {
         this.sale = sale;
         this.list = list;
     }
 
-    public void add(String productname, BigDecimal cost) {
-         list = new ArrayList<Sale>();
-        LocalTime time = LocalTime.now();
-        sale.setProductname(productname);
-        sale.setCost(cost);
-        sale.setTime(time);
+    public void add(Sale sale) {
         list.add(sale);
     }
 
     public List<Sale> findAll() {
 
         return list;
+    }
+    public void setAll(ArrayList<Sale> list){
+        this.list = list;
+
     }
 }

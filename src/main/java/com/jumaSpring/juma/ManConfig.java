@@ -13,8 +13,8 @@ public class ManConfig {
         return new SaleService();
     }
     @Bean
-    MainScreen mainScreen(SaleService saleService){
-        return new MainScreen(saleService);
+    MainScreen mainScreen(SaleService saleService,Sale sale){
+        return new MainScreen(saleService,sale);
     }
     @Bean
     SaleRepository saleRepository(Sale sale,List<Sale> list){

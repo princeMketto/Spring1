@@ -1,11 +1,7 @@
 package com.jumaSpring.juma;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
-
 import java.math.BigDecimal;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,8 +10,11 @@ public class MainScreen extends DisplayImpl{
    // DisplayImpl display;
     SaleService saleService;
 
-    public MainScreen(SaleService saleService) {
+    Sale sale;
+
+    public MainScreen(SaleService saleService,Sale sale) {
         this.saleService = saleService;
+        this.sale = sale;
     }
 
     public void start(){
@@ -51,7 +50,9 @@ public class MainScreen extends DisplayImpl{
     }
 
     private void listSale() {
+
    List<Sale> allsale  =   saleService.getAll();
+
         allsale.stream().forEach(lis ->{
             println(lis.getProductname()+" @ "+lis.getCost()+" on "+lis.getTime());
         });
@@ -64,7 +65,11 @@ public class MainScreen extends DisplayImpl{
         String productname = input.nextLine();
         println("Enter cost");
         BigDecimal cost = input.nextBigDecimal();
-        saleService.save(productname,cost);
+        sale.setProductname(productname);
+        sale.setCost(cost);
+        sale.setTime(LocalTime.now());
+        saleService.save(sale);
         start();
+
     }
 }
